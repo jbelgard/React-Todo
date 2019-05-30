@@ -1,12 +1,18 @@
-import React from 'react';
-const Todo = props => {
-    return (
-        <div>
-            <p className={`${props.item.completed? 'finished-task': null}`} onClick={ () => props.handleEventFinish (props.item.id)}>
-                {props.item.task}
-            </p>
-        </div>
-    );
-};
+import React, { Component } from 'react';
+import TodoItem from './TodoItem';
+import PropTypes from 'prop-types';
+
+class Todo extends Component{
+    render() {
+        return this.props.todos.map((todo) => (
+            <TodoItem key={todo.id}todo={todo} markComplete={this.props.markComplete} delTodo={this.props.delTodo} />
+
+        ))
+    }
+}
+
+Todo.propTypes = {
+    todos: PropTypes.array.isRequired
+}
 
 export default Todo;
